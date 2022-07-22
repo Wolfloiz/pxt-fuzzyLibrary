@@ -6,9 +6,9 @@
  */
 
 //% color="#2c80b8"
-namespace FuzzyLibrary {
+namespace fuzzyLibrary {
 
-    export enum mDigitalNum {
+    export enum digitalPorts {
         //% blockId="P0 e P1" block="P0 e P1"
         P0P1 = 1,
         //% blockId="P2P3" block="P2 e P3"
@@ -31,7 +31,7 @@ namespace FuzzyLibrary {
         P1P10 = 10
     }
 
-    export enum enColor {
+    export enum hexColor {
         //% blockId="OFF" block="OFF"
         OFF = 0,
         //% blockId="Red" block="Red"
@@ -50,7 +50,7 @@ namespace FuzzyLibrary {
         Yellow
     }
 
-    export enum mServoNum {
+    export enum servoPorts {
         //% blockId="P1" block="P1"
         P1 = 1,
         //% blockId="P4" block="P4"
@@ -63,8 +63,9 @@ namespace FuzzyLibrary {
     //% blockId=Digital_Ultrasonic block="Sensor Ultrasonico|pin %value_DNum"
     //% weight=97
     //% blockGap=20
+    //% color=ED755E
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
-    export function Ultrasonic(value_DNum: mDigitalNum): number {
+    export function ultrasonic(value_DNum: digitalPorts): number {
         //send pulse
         let Trig, Echo;
         if (value_DNum == 1) { Trig = DigitalPin.P0; Echo = DigitalPin.P1; }
@@ -96,7 +97,7 @@ namespace FuzzyLibrary {
     //% blockGap=20
     //% value.min=0 value.max=270
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
-    export function Servo2(ServoNum: mServoNum, value: number): void {
+    export function servo2(ServoNum: servoPorts, value: number): void {
         let pin;
         if (ServoNum == 1) { pin = AnalogPin.P1; }
         else if (ServoNum == 2) {
@@ -117,7 +118,7 @@ namespace FuzzyLibrary {
     //% blockGap=20
     //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB(value1: number, value2: number, value3: number): void {
+    export function rgb(value1: number, value2: number, value3: number): void {
 
         pins.analogWritePin(AnalogPin.P13, value1 * 1024 / 256);
         pins.analogWritePin(AnalogPin.P14, value2 * 1024 / 256);
@@ -128,55 +129,55 @@ namespace FuzzyLibrary {
     //% weight=1
     //% blockGap=20
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB2(value: enColor): void {
+    export function rgb2(value: hexColor): void {
         let pin1 = DigitalPin.P13;
         let pin2 = DigitalPin.P14;
         let pin3 = DigitalPin.P12;
 
         switch (value) {
-            case enColor.OFF: {
+            case hexColor.OFF: {
                 pins.digitalWritePin(pin1, 0);
                 pins.digitalWritePin(pin2, 0);
                 pins.digitalWritePin(pin3, 0);
                 break;
             }
-            case enColor.Red: {
+            case hexColor.Red: {
                 pins.digitalWritePin(pin1, 1);
                 pins.digitalWritePin(pin2, 0);
                 pins.digitalWritePin(pin3, 0);
                 break;
             }
-            case enColor.Green: {
+            case hexColor.Green: {
                 pins.digitalWritePin(pin1, 0);
                 pins.digitalWritePin(pin2, 1);
                 pins.digitalWritePin(pin3, 0);
                 break;
             }
-            case enColor.Blue: {
+            case hexColor.Blue: {
                 pins.digitalWritePin(pin1, 0);
                 pins.digitalWritePin(pin2, 0);
                 pins.digitalWritePin(pin3, 1);
                 break;
             }
-            case enColor.White: {
+            case hexColor.White: {
                 pins.digitalWritePin(pin1, 1);
                 pins.digitalWritePin(pin2, 1);
                 pins.digitalWritePin(pin3, 1);
                 break;
             }
-            case enColor.Cyan: {
+            case hexColor.Cyan: {
                 pins.digitalWritePin(pin1, 0);
                 pins.digitalWritePin(pin2, 1);
                 pins.digitalWritePin(pin3, 1);
                 break;
             }
-            case enColor.Pinkish: {
+            case hexColor.Pinkish: {
                 pins.digitalWritePin(pin1, 1);
                 pins.digitalWritePin(pin2, 0);
                 pins.digitalWritePin(pin3, 1);
                 break;
             }
-            case enColor.Yellow: {
+            case hexColor.Yellow: {
                 pins.digitalWritePin(pin1, 1);
                 pins.digitalWritePin(pin2, 1);
                 pins.digitalWritePin(pin3, 0);
